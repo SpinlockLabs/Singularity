@@ -10,7 +10,7 @@ pipeline {
 
         stage ('Gradle build') {
             steps {
-                sh './gradlew distZip'
+                sh './gradlew jar'
                 archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
             }
         }
