@@ -1,0 +1,9 @@
+rootProject.name = 'Singularity'
+
+include ':core'
+
+// Database implementations
+include ':core:databases:postgresql'
+
+// Examples
+include ':examples:timeseries'
