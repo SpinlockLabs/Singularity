@@ -11,7 +11,22 @@ pipeline {
         stage ('Gradle build') {
             steps {
                 sh './gradlew jar'
-                archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
+                }
+            }
+        }
+
+        stage ('Gradle test') {
+            steps {
+                sh './gradlew test'
+            }
+            post {
+                always {
+                    junit '**/build/test-results/test/*.xml'
+                }
             }
         }
     }
