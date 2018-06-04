@@ -1,4 +1,4 @@
-package sh.spinlock.singularity.core;
+package sh.spinlock.singularity.core.exception;
 
 public class DatabaseException extends Exception {
     public DatabaseException(String message, Exception innerException) {
