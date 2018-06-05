@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        buildDiscarder(logRotator(artifactNumToKeepStr: '5'))
+    }
+
     stages {
         stage ('Gradle clean') {
             steps {
