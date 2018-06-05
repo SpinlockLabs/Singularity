@@ -1,3 +1,5 @@
+apply from: '../gradle/maven.gradle'
+
 dependencies {
     compile group: 'com.google.inject', name: 'guice', version: '4.2.0'
 
@@ -7,4 +9,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project {
+                name = 'Singularity Core'
+                artifactId = 'singularity-core'
+                description 'Singularity Core Framework'
+            }
+        }
+    }
 }

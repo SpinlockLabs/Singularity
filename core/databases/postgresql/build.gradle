@@ -1,5 +1,0 @@
-dependencies {
-    compile project(':core')
-
-    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
-}

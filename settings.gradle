@@ -3,7 +3,7 @@ rootProject.name = 'Singularity'
 include ':core'
 
 // Database implementations
-include ':core:databases:postgresql'
+include ':databases:postgresql'
 
 // Examples
 include ':examples:timeseries'
