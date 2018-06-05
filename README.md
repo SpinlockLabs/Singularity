@@ -3,6 +3,10 @@ A project aiming to make the annoyances of database management and querying a th
 
 ## Features
 - Abstracted database API
+- PostgreSQL
 
 ## Planned Features
+- Support for SQLite, H2, and MySQL
 - Code-based querying
+- Replication between databases
+- Caching framework
