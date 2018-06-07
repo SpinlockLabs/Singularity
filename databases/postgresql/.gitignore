@@ -1,0 +1,2 @@
+# Ignore extracted embedded postgres database
+postgres/
