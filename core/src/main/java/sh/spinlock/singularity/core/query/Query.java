@@ -42,6 +42,10 @@ public class Query {
         return addToken(QueryTokens.IF_NOT_EXISTS);
     }
 
+    public Query ifExists() {
+        return addToken(QueryTokens.IF_EXISTS);
+    }
+
     /**
      * Adds QueryToken.INTO and table name, used in an INSERT query.
      * @param tableName Table name.

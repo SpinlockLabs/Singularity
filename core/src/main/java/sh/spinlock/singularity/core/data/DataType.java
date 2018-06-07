@@ -1,5 +1,12 @@
 package sh.spinlock.singularity.core.data;
 
 public enum DataType {
-    STRING
+    STRING,
+    BOOLEAN,
+    SHORT,
+    INTEGER,
+    LONG,
+    UUID,
+    JSON,
+    TIMESTAMP
 }
