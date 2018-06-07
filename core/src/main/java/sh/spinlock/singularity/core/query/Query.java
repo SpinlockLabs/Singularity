@@ -1,10 +1,13 @@
 package sh.spinlock.singularity.core.query;
 
+import sh.spinlock.singularity.core.schema.Column;
 import sh.spinlock.singularity.core.schema.Schema;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Query {
     private final List<QueryToken> tokens;
@@ -39,8 +42,27 @@ public class Query {
         return addToken(QueryTokens.IF_NOT_EXISTS);
     }
 
+    /**
+     * Adds QueryToken.INTO and table name, used in an INSERT query.
+     * @param tableName Table name.
+     * @return This Query.
+     */
+    public Query into(String tableName) {
+        return addToken(QueryTokens.INTO)
+                .addToken(new QueryToken(tableName));
+    }
+
     public Query withSchema(Schema schema) {
         return addToken(new SchemaQueryToken(schema));
+    }
+
+    public Query withColumnNames(List<Column> columns) {
+        return addToken(new ColumnNamesQueryToken(columns.stream().map(Column::getName).collect(Collectors.toList())));
+    }
+
+    public Query values(Object... values) {
+        return addToken(QueryTokens.VALUES)
+                .addToken(new ValuesQueryToken(Arrays.asList(values)));
     }
 
     public List<QueryToken> getTokens() {

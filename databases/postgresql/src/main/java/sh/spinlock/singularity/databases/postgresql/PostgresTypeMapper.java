@@ -13,4 +13,13 @@ public class PostgresTypeMapper implements DataTypeMapper {
                 throw new IllegalArgumentException("Could not map type: " + dataType.name());
         }
     }
+
+    @Override
+    public String convert(Object value) {
+        if (value instanceof String) {
+            return '\'' + String.valueOf(value) + '\'';
+        }
+
+        throw new RuntimeException("Unsupported type " + value.getClass().getCanonicalName());
+    }
 }
