@@ -34,6 +34,8 @@ public abstract class Connection {
                 tokenString = ((SchemaStatementToken) statementToken).toString(getTypeMapper());
             } else if (statementToken instanceof ValuesStatementToken) {
                 tokenString = ((ValuesStatementToken) statementToken).toString(getTypeMapper());
+            } else if (statementToken instanceof ValueStatementToken) {
+                tokenString = ((ValueStatementToken) statementToken).toString(getTypeMapper());
             } else {
                 tokenString = statementToken.toString();
             }

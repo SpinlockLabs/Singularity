@@ -37,19 +37,19 @@ public class PostgresTypeMapper extends JdbcTypeMapper {
     }
 
     @Override
-    public String convert(Object value) {
-        if (value instanceof String) {
-            return '\'' + String.valueOf(value) + '\'';
-        } else if (value instanceof Short ||
-                value instanceof Integer ||
-                value instanceof Long) {
-            return String.valueOf(value);
-        } else if (value instanceof UUID) {
+    public String convert(Value value) {
+        if (value.getString() != null) {
             return '\'' + value.toString() + '\'';
-        } else if (value instanceof Date) {
-            return '\'' + new Timestamp(((Date) value).getTime()).toString() + '\'';
-        } else if (value instanceof JsonWrapper) {
-            return "to_json('" + ((JsonWrapper) value).getJson() + "'::json)";
+        } else if (value.getShort() != null ||
+                value.getInteger() != null ||
+                value.getLong() != null) {
+            return value.toString();
+        } else if (value.getUuid() != null) {
+            return '\'' + value.toString() + '\'';
+        } else if (value.getDate() != null) {
+            return '\'' + new Timestamp(value.getDate().getTime()).toString() + '\'';
+        } else if (value.getJson() != null) {
+            return "to_json('" + value.getJson().getJson() + "'::json)";
         }
 
         return null;

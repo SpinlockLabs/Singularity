@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValuesStatementToken extends StatementToken {
-    private final List<Object> values;
+    private final List<Value> values;
 
-    public ValuesStatementToken(List<Object> values) {
+    public ValuesStatementToken(List<Value> values) {
         super(null);
         this.values = values;
     }
 
     public String toString(DataTypeMapper typeMapper) {
         List<String> strValues = new ArrayList<>();
-        for (Object value : values) {
+        for (Value value : values) {
             strValues.add(typeMapper.convert(value));
         }
         return '(' + String.join(",", strValues) + ')';
@@ -23,6 +23,6 @@ public class ValuesStatementToken extends StatementToken {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("");
+        throw new UnsupportedOperationException();
     }
 }

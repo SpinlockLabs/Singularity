@@ -12,6 +12,7 @@ import sh.spinlock.singularity.core.statement.StatementType;
 import sh.spinlock.singularity.core.statement.Row;
 import sh.spinlock.singularity.core.schema.Column;
 import sh.spinlock.singularity.core.schema.Schema;
+import sh.spinlock.singularity.core.statement.Value;
 import sh.spinlock.singularity.databases.postgresql.PostgresConnection;
 import sh.spinlock.singularity.databases.postgresql.PostgresModule;
 
@@ -36,7 +37,9 @@ public class Main {
 
         Injector injector = Guice.createInjector(new PostgresModule(config));
         PostgresConnection connection = injector.getInstance(PostgresConnection.class);
-        UUID uuid = UUID.randomUUID();
+        Value date = new Value(new Date());
+        Value path = new Value(UUID.randomUUID());
+        Value json = new Value(new JsonWrapper("[\"test\"]"));
         try {
             connection.connect();
             connection.execute(
@@ -53,13 +56,16 @@ public class Main {
                     Statement.create(StatementType.INSERT)
                             .into("Test")
                             .withColumnNames(schema.getColumnsByName("time", "path", "value"))
-                            .values(new Date(), uuid, new JsonWrapper("[\"test\"]"))
+                            .values(date, path, json)
             );
             List<Row> result = connection.query(
                     Statement.create(StatementType.SELECT)
                             .string("*")
                             .from()
                             .name("Test")
+                            .where()
+                            .column("path")
+                            .equals(path)
             );
 
             System.out.print(rowsUpdated);

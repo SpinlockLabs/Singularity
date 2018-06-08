@@ -17,6 +17,15 @@ public class Statement {
     }
 
     /**
+     * Create new Statement with StatementToken.
+     * @param queryType StatementToken constant from StatementType class.
+     * @return New instance of Statement.
+     */
+    public static Statement create(StatementToken queryType) {
+        return new Statement().addToken(queryType);
+    }
+
+    /**
      * Inserts a StatementToken of custom value.
      * @param value String value to insert.
      * @return This Statement.
@@ -27,11 +36,20 @@ public class Statement {
 
     /**
      * Wrapper of {@link #string(String)} with different name.
-     * @param name Name of table.
+     * @param name String to insert.
      * @return This Statement.
      */
     public Statement name(String name) {
         return string(name);
+    }
+
+    /**
+     * Wrapper of {@link #string(String)} with different name.
+     * @param column String to insert.
+     * @return This Statement.
+     */
+    public Statement column(String column) {
+        return string(column);
     }
 
     public Statement from() {
@@ -68,9 +86,13 @@ public class Statement {
         return addToken(new ColumnNamesStatementToken(columns.stream().map(Column::getName).collect(Collectors.toList())));
     }
 
-    public Statement values(Object... values) {
+    public Statement values(Value... values) {
         return addToken(StatementTokens.VALUES)
                 .addToken(new ValuesStatementToken(Arrays.asList(values)));
+    }
+
+    public Statement where() {
+        return addToken(StatementTokens.WHERE);
     }
 
     public List<StatementToken> getTokens() {
@@ -91,12 +113,8 @@ public class Statement {
         return this;
     }
 
-    /**
-     * Create new Statement with StatementToken.
-     * @param queryType StatementToken constant from StatementType class.
-     * @return New instance of Statement.
-     */
-    public static Statement create(StatementToken queryType) {
-        return new Statement().addToken(queryType);
+    public Statement equals(Value value) {
+        return addToken(StatementTokens.EQUALS_SIGN)
+                .addToken(new ValueStatementToken(value));
     }
 }
