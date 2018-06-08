@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import sh.spinlock.singularity.core.exception.DatabaseException;
 import sh.spinlock.singularity.core.exception.QueryException;
-import sh.spinlock.singularity.core.query.Query;
-import sh.spinlock.singularity.core.query.QueryType;
+import sh.spinlock.singularity.core.statement.Statement;
+import sh.spinlock.singularity.core.statement.StatementType;
 import sh.spinlock.singularity.databases.postgresql.test.util.EmbeddedPostgresWrapper;
 
 import java.io.IOException;
@@ -17,6 +17,6 @@ class InsertQueryTest {
 
     @Test
     void testConnection() throws QueryException {
-        EmbeddedPostgresWrapper.getConnection().query(Query.create(QueryType.SELECT).string("1"));
+        EmbeddedPostgresWrapper.getConnection().query(Statement.create(StatementType.SELECT).string("1"));
     }
 }

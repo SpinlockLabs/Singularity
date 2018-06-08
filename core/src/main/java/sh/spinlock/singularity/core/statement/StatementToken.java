@@ -1,9 +1,9 @@
-package sh.spinlock.singularity.core.query;
+package sh.spinlock.singularity.core.statement;
 
-public class QueryToken {
+public class StatementToken {
     private final String value;
 
-    public QueryToken(String value) {
+    public StatementToken(String value) {
         this.value = value;
     }
 

@@ -1,14 +1,14 @@
-package sh.spinlock.singularity.core.query;
+package sh.spinlock.singularity.core.statement;
 
 import sh.spinlock.singularity.core.data.DataTypeMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValuesQueryToken extends QueryToken {
+public class ValuesStatementToken extends StatementToken {
     private final List<Object> values;
 
-    public ValuesQueryToken(List<Object> values) {
+    public ValuesStatementToken(List<Object> values) {
         super(null);
         this.values = values;
     }

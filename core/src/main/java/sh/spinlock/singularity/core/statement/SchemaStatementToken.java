@@ -1,4 +1,4 @@
-package sh.spinlock.singularity.core.query;
+package sh.spinlock.singularity.core.statement;
 
 import sh.spinlock.singularity.core.data.DataTypeMapper;
 import sh.spinlock.singularity.core.schema.Column;
@@ -7,10 +7,10 @@ import sh.spinlock.singularity.core.schema.Schema;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SchemaQueryToken extends QueryToken {
+public class SchemaStatementToken extends StatementToken {
     private final Schema schema;
 
-    public SchemaQueryToken(Schema schema) {
+    public SchemaStatementToken(Schema schema) {
         super(null);
         this.schema = schema;
     }

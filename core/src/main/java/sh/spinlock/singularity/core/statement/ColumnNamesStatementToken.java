@@ -1,12 +1,12 @@
-package sh.spinlock.singularity.core.query;
+package sh.spinlock.singularity.core.statement;
 
 import java.util.Collections;
 import java.util.List;
 
-public class ColumnNamesQueryToken extends QueryToken {
+public class ColumnNamesStatementToken extends StatementToken {
     private final List<String> columnNames;
 
-    public ColumnNamesQueryToken(List<String> columnNames) {
+    public ColumnNamesStatementToken(List<String> columnNames) {
         super(null);
         this.columnNames = columnNames;
     }
